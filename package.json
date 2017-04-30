@@ -20,6 +20,7 @@
     "express": "^4.15.2",
     "lodash": "^4.17.4",
     "material-ui": "^0.17.4",
+    "material-ui-fullscreen-dialog": "^0.3.1",
     "mongodb": "^2.2.25",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
@@ -28,6 +29,7 @@
     "react-grid-layout": "^0.14.6",
     "react-intl": "^2.2.3",
     "react-tap-event-plugin": "^2.0.1",
+    "react-transition-group": "^1.1.2",
     "sanitize.css": "^5.0.0",
     "speak-tts": "^1.0.2"
   },
