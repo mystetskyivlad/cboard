@@ -4,9 +4,9 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import Autosuggest from 'react-autosuggest';
 import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
-import Dialog from 'material-ui/Dialog';
+// import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-
+import FullscreenDialog from 'material-ui-fullscreen-dialog';
 import mulberrySymbols from '../../api/mulberry-symbols.json';
 import InputImage from '../InputImage';
 import '../../styles/AddButton.css';
@@ -19,11 +19,6 @@ const renderSuggestion = suggestion => (
     <FormattedMessage id={suggestion.name} />
   </div>
 );
-
-const customContentStyle = {
-  width: '100%',
-  maxWidth: 'none',
-};
 
 class addButton extends PureComponent {
   constructor(props) {
@@ -119,7 +114,7 @@ class addButton extends PureComponent {
     this.setState({ link: event.target.value });
   }
 
-  handleClose = () => {
+  handleRequestClose = () => {
     this.setState({ open: false });
     this.props.onClose();
   }
@@ -136,6 +131,7 @@ class addButton extends PureComponent {
     };
 
     this.props.onAdd(button);
+    this.handleRequestClose();
   }
 
   render() {
@@ -148,30 +144,22 @@ class addButton extends PureComponent {
       onChange: this.handleImageSearchChange,
     };
 
-    const actions = [
-      <FlatButton
-        label="Cancel"
-        primary
-        onTouchTap={this.handleClose}
-      />,
-      <FlatButton
-        label="Submit"
-        primary
-        onTouchTap={this.handleSubmit}
-      />,
-    ];
+    const labelValue = this.state.label ?
+      this.props.intl.formatMessage({ id: this.state.label }) :
+      this.state.label;
 
     return (
-      <Dialog
-        title="Add new symbol"
-        actions={actions}
-        modal={false}
+      <FullscreenDialog
+        containrStyle={{ flex: '0 0 auto', overflow: 'visible' }}
+        title="Add symbol"
         open={this.state.open}
-        onRequestClose={this.handleClose}
-        autoScrollBodyContent
-        contentStyle={customContentStyle}
+        onRequestClose={this.handleRequestClose}
+        actionButton={<FlatButton
+          label={this.props.intl.formatMessage({ id: 'Save' })}
+          onTouchTap={this.handleSubmit}
+        />}
       >
-        <form>
+        <form className="add-button">
           <Autosuggest
             suggestions={imageSuggestions}
             onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
@@ -185,12 +173,12 @@ class addButton extends PureComponent {
           />
           <div className="image-placeholder">
             <img src={this.state.img} alt="" />
+            <InputImage onChange={this.handleImageUpload} />
           </div>
-          <InputImage onChange={this.handleImageUpload} />
           <br />
           <TextField
             floatingLabelText="Label"
-            value={this.state.label}
+            value={labelValue}
             onChange={this.handleLabelChange}
           />
           <br />
@@ -211,7 +199,7 @@ class addButton extends PureComponent {
             onChange={this.handleLinkChange}
           />}
         </form>
-      </Dialog>
+      </FullscreenDialog>
     );
   }
 }

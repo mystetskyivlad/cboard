@@ -32,15 +32,7 @@ class InputImage extends PureComponent {
 
   render() {
     return (
-      <div>
-        <RaisedButton
-          label="Choose an Image"
-          containerElement="label"
-          icon={<FontIcon className="material-icons">add_a_photo</FontIcon>}
-        >
-          <input type="file" style={styles.imageInput} onChange={this.handleChange} ref={(input) => { this.input = input; }} />
-        </RaisedButton>
-      </div >
+      <input id="input-file-image" type="file" style={styles.imageInput} onChange={this.handleChange} ref={(input) => { this.input = input; }} />
     );
   }
 }

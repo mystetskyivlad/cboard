@@ -147,7 +147,7 @@ Grid.propTypes = {
 
 Grid.defaultProps = {
   id: 'default',
-  cols: { lg: 10, md: 8, sm: 6, xs: 6, xxs: 3 },
+  cols: { lg: 10, md: 8, sm: 6, xs: 5, xxs: 3 },
   breakpoints: { lg: 1200, md: 996, sm: 768, xs: 567, xxs: 0 },
   children: null,
   edit: false,

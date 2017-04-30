@@ -171,59 +171,36 @@ class Board extends PureComponent {
           <Output value={this.state.outputValue} onOutputClick={this.handleOutputClick} />
         </div>
 
-        {!this.state.edit &&
-          <Toolbar>
-            <ToolbarGroup firstChild>
-              <IconButton
-                iconClassName="material-icons"
-                disabled={!this.history.length}
-                onTouchTap={this.handleBackClick}
-              >
-                arrow_back
+        <Toolbar>
+          <ToolbarGroup firstChild>
+            <IconButton
+              iconClassName="material-icons"
+              disabled={!this.history.length}
+              onTouchTap={this.handleBackClick}
+            >
+              arrow_back
               </IconButton>
-            </ToolbarGroup>
+          </ToolbarGroup>
 
-            <ToolbarGroup>
-              <ToolbarTitle text={intl.formatMessage({ id: this.state.activeBoard.id })} />
-            </ToolbarGroup>
+          <ToolbarGroup>
+            <ToolbarTitle text={intl.formatMessage({ id: this.state.activeBoard.id })} />
+          </ToolbarGroup>
 
-            <ToolbarGroup lastChild>
-              <IconButton
-                iconClassName="material-icons"
-                onTouchTap={this.handleEditClick}
-              >
-                mode_edit
+          <ToolbarGroup lastChild>
+            <IconButton
+              iconClassName="material-icons"
+              onTouchTap={this.handleEditClick}
+            >
+              mode_edit
               </IconButton>
-            </ToolbarGroup>
-          </Toolbar>}
-
-        {this.state.edit &&
-          <Toolbar style={{ backgroundColor: '#2196f3' }}>
-            <ToolbarGroup firstChild>
-              <IconButton
-                iconClassName="material-icons"
-                iconStyle={{ color: '#fff' }} // TODO
-                onTouchTap={this.handleAddButtonClick}
-              >
-                add
+            <IconButton
+              iconClassName="material-icons"
+              onTouchTap={this.handleAddButtonClick}
+            >
+              add
               </IconButton>
-            </ToolbarGroup>
-            <ToolbarGroup lastChild>
-              <FlatButton
-                label="Debug"
-                style={{ color: '#fff' }} // TODO
-                download="boards.json"
-                href="#"
-                onTouchTap={(event) => { this.downloadBoards(event); }}
-              />
-
-              <FlatButton
-                label={intl.formatMessage({ id: 'cboard.containers.Board.done' })}
-                style={{ color: '#fff' }} // TODO
-                onTouchTap={this.handleEditClick}
-              />
-            </ToolbarGroup>
-          </Toolbar>}
+          </ToolbarGroup>
+        </Toolbar>
 
         <div className="board__buttons" ref={(ref) => { this.gridContainer = ref; }}>
           <Grid id={this.state.activeBoard.id} edit={this.state.edit}>
