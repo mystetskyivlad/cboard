@@ -97,6 +97,9 @@ class App extends PureComponent {
     const intl = this.props.intl;
     const { selectedIndex } = this.state;
     const muiTheme = getMuiTheme({
+      appBar: {
+        height: 56,
+      },
       toolbar: {
         height: 56,
       },
@@ -107,7 +110,6 @@ class App extends PureComponent {
         selectedFontSize: 14,
         unselectedFontSize: 14,
       },
-
       isRtl: false,
     });
 

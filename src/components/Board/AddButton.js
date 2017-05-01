@@ -4,6 +4,7 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import Autosuggest from 'react-autosuggest';
 import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
+import FontIcon from 'material-ui/FontIcon';
 // import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import FullscreenDialog from 'material-ui-fullscreen-dialog';
@@ -115,7 +116,7 @@ class addButton extends PureComponent {
   }
 
   handleRequestClose = () => {
-    this.setState({ open: false });
+    this.setState({ open: false, type: '', img: '', label: '', text: '', link: '' });
     this.props.onClose();
   }
 
@@ -129,7 +130,6 @@ class addButton extends PureComponent {
       img,
       link,
     };
-
     this.props.onAdd(button);
     this.handleRequestClose();
   }
@@ -139,7 +139,7 @@ class addButton extends PureComponent {
 
     // Autosuggest will pass through all these props to the input element.
     const inputProps = {
-      placeholder: 'Search an image',
+      placeholder: 'Image search',
       value: imageSearchValue,
       onChange: this.handleImageSearchChange,
     };
@@ -171,19 +171,18 @@ class addButton extends PureComponent {
             inputProps={inputProps}
             ref={(autoSuggest) => { this.autoSuggest = autoSuggest; }}
           />
-          <div className="image-placeholder">
-            <img src={this.state.img} alt="" />
-            <InputImage onChange={this.handleImageUpload} />
-          </div>
+          <InputImage src={this.state.img} onChange={this.handleImageUpload} />
           <br />
           <TextField
             floatingLabelText="Label"
             value={labelValue}
+            style={{ width: '100%' }}
             onChange={this.handleLabelChange}
           />
           <br />
           <TextField
             floatingLabelText="TTS Text"
+            style={{ width: '100%' }}
             onChange={this.handleTextChange}
           />
           <br />

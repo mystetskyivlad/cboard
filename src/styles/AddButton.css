@@ -4,11 +4,12 @@
   align-items: center;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+  padding: 0 24px;
 }
 
 .image-placeholder {
   position: relative;
-  width: 192px;
+  width: 128px;
   background: #ddd;
 }
 
@@ -24,4 +25,16 @@
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.image-placeholder > .material-icons {
+  width: 32px;
+  height: 32px;
+  font-size: 32px !important;
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
 }
